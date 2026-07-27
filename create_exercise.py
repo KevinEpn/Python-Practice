@@ -7,9 +7,15 @@ Creates the initial structure for a Python excersice.
 
 # constants
 
+
 # functions
-def main():
+def main() -> None:
+    """
+    Appication entry point
+    """
+
     print("Exercise Generator")
+
 
 if __name__ == "__main__":
     main()
