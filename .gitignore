@@ -1,0 +1,41 @@
+# Workspace for VS CODE APP
+Python-Practice.code-workspace
+
+# Virtual environment folder
+.venv/
+
+# Python bytecode files
+*py[cod]
+
+# Python compiled files
+*.$py.class
+
+# Python cache files
+__pycache__/ 
+
+# Pytest cache files
+.pytest_cache/
+
+# Ruff cache files
+.ruff_cache/
+
+# VS Code settings
+.vscode/settings.json
+
+# Python bytecode files
+*.pyc
+
+# Coverage report files
+.coverage
+
+# Coverage report folder
+htmlcov/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# OS generated files
+.DS_Store
+Thumbs.db
