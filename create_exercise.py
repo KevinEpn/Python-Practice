@@ -45,9 +45,25 @@ def create_exercise_directory(exercise_id: str, exercise_name: str) -> Path:
     return exercise_path
 
 
+def load_template(template_name: str) -> str:
+    """
+    Load template content
+
+    Args:
+        template_name: Name of the template file.
+
+    Returns:
+        str: The content of the template.
+    """
+
+    template = Path("templates") / template_name
+
+    return template.read_text(encoding="utf-8")
+
+
 def main() -> None:
     """
-    Appication entry point
+    Application entry point
     """
 
     args = parse_arguments()
@@ -63,6 +79,10 @@ def main() -> None:
     print()
     print("Location:")
     print(exercise_path)
+
+    # Temporary test for template loading
+    content = load_template("metadata.json.tpl")
+    print(content)
 
 
 if __name__ == "__main__":
