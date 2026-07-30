@@ -7,8 +7,10 @@ Creates the initial structure for a Python excersice.
 import argparse
 from pathlib import Path
 
-
 # constants
+TEMPLATE_DIR = Path("templates")
+
+
 def parse_arguments() -> argparse.Namespace:
     """
     Parse command line arguments
@@ -56,9 +58,27 @@ def load_template(template_name: str) -> str:
         str: The content of the template.
     """
 
-    template = Path("templates") / template_name
+    template = TEMPLATE_DIR / template_name
 
     return template.read_text(encoding="utf-8")
+
+
+def render_template(template: str, variables: dict[str, str]) -> str:
+    """
+    Render template with variables
+
+    Args:
+        template: Template content.
+        variables: Dictionary of variables to replace in the template.
+
+    Returns:
+        str: The rendered template content.
+    """
+
+    for key, value in variables.items():
+        template = template.replace(f"{{{{{key}}}}}", value)
+
+    return template
 
 
 def main() -> None:
@@ -69,6 +89,8 @@ def main() -> None:
     args = parse_arguments()
 
     exercise_path = create_exercise_directory(args.exercise_id, args.exercise_name)
+
+    variables = {"EXERCISE_ID": args.exercise_id, "EXERCISE_NAME": args.exercise_name}
 
     print("Exercise Generator")
     print()
@@ -81,7 +103,8 @@ def main() -> None:
     print(exercise_path)
 
     # Temporary test for template loading
-    content = load_template("metadata.json.tpl")
+    template = load_template("metadata.json.tpl")
+    content = render_template(template, variables)
     print(content)
 
 
