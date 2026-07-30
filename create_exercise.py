@@ -92,6 +92,22 @@ def write_file(destination: Path, content: str) -> None:
     destination.write_text(content, encoding="utf-8")
 
 
+def generate_file(
+    template_name: str, destination: Path, variables: dict[str, str]
+) -> None:
+    """
+    Generate a file from a template.
+
+    Args:
+        template_name: Name of the template file.
+        destination: Path to the destination file.
+        variables: Dictionary of variables to replace in the template.
+    """
+    template = load_template(template_name)
+    content = render_template(template, variables)
+    write_file(destination, content)
+
+
 def main() -> None:
     """
     Application entry point
@@ -113,14 +129,7 @@ def main() -> None:
     print("Location:")
     print(exercise_path)
 
-    # Temporary test for template loading
-    template = load_template("metadata.json.tpl")
-    content = render_template(template, variables)
-    print(content)
-
-    # test_file = Path("test_output.txt")
-
-    # write_file(test_file, "Hello, Python!")
+    generate_file("metadata.json.tpl", exercise_path / "metadata.json", variables)
 
 
 if __name__ == "__main__":
