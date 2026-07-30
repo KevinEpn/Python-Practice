@@ -81,6 +81,17 @@ def render_template(template: str, variables: dict[str, str]) -> str:
     return template
 
 
+def write_file(destination: Path, content: str) -> None:
+    """
+    Write content to a file.
+
+    Args:
+        destination: Path to the destination file.
+        content: Content to write to the file.
+    """
+    destination.write_text(content, encoding="utf-8")
+
+
 def main() -> None:
     """
     Application entry point
@@ -106,6 +117,10 @@ def main() -> None:
     template = load_template("metadata.json.tpl")
     content = render_template(template, variables)
     print(content)
+
+    # test_file = Path("test_output.txt")
+
+    # write_file(test_file, "Hello, Python!")
 
 
 if __name__ == "__main__":
